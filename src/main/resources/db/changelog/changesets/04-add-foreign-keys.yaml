@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 04
+      author: geo
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: feature_versions
+            baseColumnNames: feature_id
+            referencedTableName: features
+            referencedColumnNames: id
+            constraintName: fk_feature_versions_feature
+        - addForeignKeyConstraint:
+            baseTableName: features
+            baseColumnNames: current_version
+            referencedTableName: feature_versions
+            referencedColumnNames: id
+            constraintName: fk_features_current_version
+            deferrable: true
+            initiallyDeferred: true

@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03
+      author: geo
+      changes:
+        - createTable:
+            tableName: feature_versions
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: feature_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: geometry
+                  type: GEOMETRY
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: TEXT
+              - column:
+                  name: version_number
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+        - addUniqueConstraint:
+            tableName: feature_versions
+            columnNames: feature_id, version_number
+            constraintName: uq_feature_versions_version

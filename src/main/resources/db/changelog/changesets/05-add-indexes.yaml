@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05
+      author: geo
+      changes:
+        # layers
+        - createIndex:
+            tableName: layers
+            indexName: idx_layers_project
+            columns:
+              - column:
+                  name: project_id
+        - createIndex:
+            tableName: layers
+            indexName: idx_layers_is_public
+            columns:
+              - column:
+                  name: is_public
+
+        # features
+        - createIndex:
+            tableName: features
+            indexName: idx_features_layer_id
+            columns:
+              - column:
+                  name: layer_id
+
+        # feature_versions
+        - createIndex:
+            tableName: feature_versions
+            indexName: idx_fv_is_deleted
+            columns:
+              - column:
+                  name: is_deleted
+
+        # GIST index
+        - sql:
+            sql: CREATE INDEX idx_fv_geometry ON feature_versions USING GIST (geometry);

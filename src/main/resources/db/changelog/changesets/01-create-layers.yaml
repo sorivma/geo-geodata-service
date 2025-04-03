@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01
+      author: geo
+      changes:
+        - createTable:
+            tableName: layers
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: TEXT
+              - column:
+                  name: project_id
+                  type: UUID
+              - column:
+                  name: geometry_type
+                  type: TEXT
+              - column:
+                  name: srid
+                  type: INT
+                  defaultValueNumeric: 4326
+              - column:
+                  name: is_public
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+        - addUniqueConstraint:
+            tableName: layers
+            columnNames: project_id, name
+            constraintName: uq_layers_project_name

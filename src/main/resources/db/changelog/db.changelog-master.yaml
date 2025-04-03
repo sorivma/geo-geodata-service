@@ -5,3 +5,7 @@ databaseChangeLog:
       file: db/changelog/changesets/02-create-features.yaml
   - include:
       file: db/changelog/changesets/03-create-feature-versions.yaml
+  - include:
+      file: db/changelog/changesets/04-add-foreign-keys.yaml
+  - include:
+      file: db/changelog/changesets/05-add-indexes.yaml
