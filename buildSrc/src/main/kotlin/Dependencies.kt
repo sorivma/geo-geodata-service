@@ -4,6 +4,10 @@ object Versions {
     const val dependencyManagement = "1.1.3"
     const val exposed = "0.60.0"
     const val postgres = "42.7.2"
+    const val postgis = "2.3.0"
+    const val testContainers = "1.19.7"
+    const val junit = "5.10.2"
+    const val junitRunner = "1.10.2"
 }
 
 object Deps {
@@ -25,12 +29,23 @@ object Deps {
         const val time = "org.jetbrains.exposed:exposed-java-time:${Versions.exposed}"
     }
 
+    object Postgis {
+        const val jdbc = "net.postgis:postgis-jdbc:${Versions.postgis}"
+    }
+
     object Liquibase {
         const val core = "org.liquibase:liquibase-core"
     }
 
     object Test {
-        const val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit5"
-        const val junitLauncher = "org.junit.platform:junit-platform-launcher"
+        const val junitApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
+        const val junitEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
+        const val junitLauncher = "org.junit.platform:junit-platform-launcher:${Versions.junitRunner}"
+        const val junitPlatformRunner = "org.junit.platform:junit-platform-runner:${Versions.junitRunner}"
+
+        const val kotlinTest = "org.jetbrains.kotlin:kotlin-test-junit5:${Versions.kotlin}"
+
+        const val testContainers = "org.testcontainers:testcontainers:${Versions.testContainers}"
+        const val testContainersPostgres = "org.testcontainers:postgresql:${Versions.testContainers}"
     }
 }

@@ -34,9 +34,14 @@ dependencies {
 
     implementation(Deps.Liquibase.core)
 
-    testImplementation(Deps.Spring.test)
+    implementation(Deps.Postgis.jdbc)
+
+    testImplementation(Deps.Test.junitApi)
     testImplementation(Deps.Test.kotlinTest)
-    testRuntimeOnly(Deps.Test.junitLauncher)
+    testRuntimeOnly(Deps.Test.junitEngine)
+
+    testImplementation(Deps.Test.testContainers)
+    testImplementation(Deps.Test.testContainersPostgres)
 }
 
 kotlin {
@@ -47,4 +52,10 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+
+
+    testLogging {
+        events("passed", "skipped", "failed")
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
 }
